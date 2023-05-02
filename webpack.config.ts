@@ -79,8 +79,14 @@ const config: Configuration = {
   },
   devServer: {
     historyApiFallback: true, // react router
-    port: 3090,
+    port: 3080,
     devMiddleware: { publicPath: '/dist/' },
+    // proxy:{
+    //   '/api/':{
+    //     target:'http://localhost:3095',
+    //     changeOrigin: true, 
+    //   }
+    // },
     static: { directory: path.resolve(__dirname) },
   },
 };
