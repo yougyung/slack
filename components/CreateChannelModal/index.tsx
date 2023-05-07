@@ -31,14 +31,12 @@ const CreateChannelModal: VFC<Props> = ({
     data: userData,
     error,
     mutate,
-  } = useSWR<IUser | false>("http://localhost:3095/api/users", fetcher, {
+  } = useSWR<IUser | false>(`/api/users`, fetcher, {
     dedupingInterval: 2000,
   });
 
   const { data: channelData, mutate: mutateChannel } = useSWR<IChannel[]>(
-    userData
-      ? `http://localhost:3095/api/workspaces/${workspace}/channels`
-      : null,
+    userData ? `/api/workspaces/${workspace}/channels` : null,
     fetcher
   );
 
@@ -47,7 +45,7 @@ const CreateChannelModal: VFC<Props> = ({
       e.preventDefault();
       axios
         .post(
-          `http://localhost:3095/api/workspaces/${workspace}/channels`,
+          `/api/workspaces/${workspace}/channels`,
           {
             name: newChannel,
           },
