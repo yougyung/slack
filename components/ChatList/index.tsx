@@ -1,5 +1,5 @@
-import { ChatZone } from "./style";
-import React from "react";
+import { ChatZone } from './style';
+import React from 'react';
 
 const ChatList = () => {
   return <ChatZone></ChatZone>;

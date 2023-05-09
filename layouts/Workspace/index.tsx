@@ -1,4 +1,4 @@
-import React, { VFC, useCallback, useState } from 'react';
+import React, { VFC, useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
 import useInput from '@hooks/useInput';
@@ -33,6 +33,7 @@ import {
 import CreateChannelModal from '@components/CreateChannelModal';
 import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
 import InviteChannelModal from '@components/InviteChannelModal';
+import useSocket from '@hooks/useSocket';
 
 const Workspace: VFC = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -60,6 +61,21 @@ const Workspace: VFC = () => {
   const { data: channelData } = useSWR<IChannel[]>(userData ? `/api/workspaces/${workspace}/channels` : null, fetcher);
 
   const { data: memberData } = useSWR<IUser[]>(userData ? `/api/workspaces/${workspace}/members` : null, fetcher);
+  const [socket, disconnect] = useSocket(workspace);
+
+  useEffect(() => {
+    if (channelData && userData && socket) {
+      console.log(socket);
+      socket.emit('login', { id: userData.id, channels: channelData.map((v) => v.id) });
+    }
+  }, [socket, channelData, userData]);
+
+  //workspace의 변경
+  useEffect(() => {
+    return () => {
+      disconnect();
+    };
+  }, [workspace, disconnect]);
 
   const onLogout = useCallback(() => {
     axios
