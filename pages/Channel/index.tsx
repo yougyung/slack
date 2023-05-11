@@ -1,5 +1,3 @@
-import Workspace from '@layouts/Workspace';
-import { channel } from 'diagnostics_channel';
 import React, { useCallback } from 'react';
 import { Container, Header } from './styles';
 import ChatBox from '@components/ChatBox';
@@ -15,7 +13,7 @@ const Channel = () => {
   return (
     <Container>
       <Header>채널</Header>
-      <ChatList />
+      {/* <ChatList /> */}
       <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
     </Container>
   );
