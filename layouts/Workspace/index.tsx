@@ -10,7 +10,6 @@ import DMList from '@components/DMList';
 import gravatar from 'gravatar';
 import Modal from '@components/Modal';
 import { Link, Redirect, Route, Switch, useParams } from 'react-router-dom';
-import { channel } from 'diagnostics_channel';
 import { IChannel, IUser } from '@typings/db';
 import { Button, Input, Label } from '@pages/SignUp/style';
 import { toast } from 'react-toastify';
