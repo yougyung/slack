@@ -13,13 +13,14 @@
     "paths": {
       "@hooks/*": ["hooks/*"],
       "@components/*": ["components/*"],
-      "@layouts/*": ["layouts/*"],
+      "@common/*": ["common/*"],
       "@pages/*": ["pages/*"],
       "@utils/*": ["utils/*"],
       "@typings/*": ["typings/*"]
     }
   },
-  "ts-node": {//일반적으로 webpack은 ts을 인식하지 못함
+  "ts-node": {
+    //일반적으로 webpack은 ts을 인식하지 못함
     "compilerOptions": {
       "module": "commonjs",
       "moduleResolution": "Node",

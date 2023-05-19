@@ -50,7 +50,7 @@ const LogIn = () => {
 
   return (
     <div id="container">
-      <Header>Slack</Header>
+      <Header>commu</Header>
       <Form onSubmit={onSubmit}>
         <Label id="email-label">
           <span>이메일 주소</span>

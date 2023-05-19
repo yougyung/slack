@@ -33,7 +33,7 @@ const ChannelList: FC = () => {
             aria-hidden="true"
           />
         </CollapseButton>
-        <span>Channels</span>
+        <span>채널</span>
       </h2>
       <div>
         {!channelCollapse &&

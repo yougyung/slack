@@ -19,3 +19,10 @@ export const CollapseButton = styled.button<{ collapse: boolean }>`
     }
   `};
 `;
+
+export const Div = styled.div`
+  padding-left: 36px;
+  &:hover {
+    background: #1e293b;
+  }
+`;

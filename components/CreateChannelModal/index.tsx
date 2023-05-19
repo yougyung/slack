@@ -1,27 +1,23 @@
-import Modal from "@components/Modal";
-import { Button, Input, Label } from "@pages/SignUp/style";
-import React, { VFC, useCallback } from "react";
-import useInput from "@hooks/useInput";
-import axios from "axios";
-import Workspace from "@layouts/Workspace";
-import { useParams } from "react-router";
-import { ConcatenationScope } from "webpack";
-import { toast } from "react-toastify";
-import useSWR from "swr";
-import { IChannel, IUser } from "@typings/db";
-import fetcher from "@utils/fetcher";
+import Modal from '@components/Modal';
+import { Button, Input, Label } from '@pages/SignUp/style';
+import React, { VFC, useCallback } from 'react';
+import useInput from '@hooks/useInput';
+import axios from 'axios';
+import Workspace from '@common/components/Workspace';
+import { useParams } from 'react-router';
+import { ConcatenationScope } from 'webpack';
+import { toast } from 'react-toastify';
+import useSWR from 'swr';
+import { IChannel, IUser } from '@typings/db';
+import fetcher from '@utils/fetcher';
 
 interface Props {
   show: boolean;
   onCloseModal: () => void;
   setShowCreateChannelModal: (flag: boolean) => void;
 }
-const CreateChannelModal: VFC<Props> = ({
-  show,
-  onCloseModal,
-  setShowCreateChannelModal,
-}) => {
-  const [newChannel, onChangeNewChannel, setNewChannel] = useInput("");
+const CreateChannelModal: VFC<Props> = ({ show, onCloseModal, setShowCreateChannelModal }) => {
+  const [newChannel, onChangeNewChannel, setNewChannel] = useInput('');
   const { workspace, channel } = useParams<{
     workspace: string;
     channel: string;
@@ -37,7 +33,7 @@ const CreateChannelModal: VFC<Props> = ({
 
   const { data: channelData, mutate: mutateChannel } = useSWR<IChannel[]>(
     userData ? `/api/workspaces/${workspace}/channels` : null,
-    fetcher
+    fetcher,
   );
 
   const onCreateChannel = useCallback(
@@ -51,19 +47,19 @@ const CreateChannelModal: VFC<Props> = ({
           },
           {
             withCredentials: true,
-          }
+          },
         )
         .then(() => {
           setShowCreateChannelModal(false);
           mutateChannel();
-          setNewChannel("");
+          setNewChannel('');
         })
         .catch((error) => {
           console.dir(error);
-          toast.error(error.response?.data, { position: "bottom-center" });
+          toast.error(error.response?.data, { position: 'bottom-center' });
         });
     },
-    [newChannel]
+    [newChannel],
   );
 
   return (
@@ -71,11 +67,7 @@ const CreateChannelModal: VFC<Props> = ({
       <form onSubmit={onCreateChannel}>
         <Label id="channel-label">
           <span>channel</span>
-          <Input
-            id="workspace"
-            value={newChannel}
-            onChange={onChangeNewChannel}
-          />
+          <Input id="workspace" value={newChannel} onChange={onChangeNewChannel} />
         </Label>
 
         <Button type="submit">생성하기</Button>
