@@ -15,6 +15,7 @@
       "@components/*": ["components/*"],
       "@common/*": ["common/*"],
       "@pages/*": ["pages/*"],
+      "@assets/*": ["assets/*"],
       "@utils/*": ["utils/*"],
       "@typings/*": ["typings/*"]
     }

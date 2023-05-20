@@ -21,8 +21,10 @@ export const CollapseButton = styled.button<{ collapse: boolean }>`
 `;
 
 export const Div = styled.div`
-  padding-left: 36px;
-  &:hover {
-    background: #1e293b;
-  }
+  background: #1e293b;
+  width: 14rem;
+  height: 5rem;
+  border-radius: 1rem;
+  padding: 8px 36px;
+  margin: 1rem;
 `;

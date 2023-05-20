@@ -1,5 +1,7 @@
 // import useSocket from '@hooks/useSocket';
-import { CollapseButton } from '@components/DMList/style';
+import OptionBox from '@common/components/OptionBox';
+import CreateChannelModal from '@components/CreateChannelModal';
+import { CollapseButton, Div } from '@components/DMList/style';
 import { IChannel, IUser } from '@typings/db';
 import fetcher from '@utils/fetcher';
 import React, { FC, useCallback, useState } from 'react';
@@ -8,6 +10,8 @@ import { NavLink } from 'react-router-dom';
 import useSWR from 'swr';
 
 const ChannelList: FC = () => {
+  const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
+
   const { workspace } = useParams<{ workspace?: string }>();
   const {
     data: userData,
@@ -23,6 +27,13 @@ const ChannelList: FC = () => {
     setChannelCollapse((prev) => !prev);
   }, []);
 
+  const onClickAddChannel = useCallback(() => {
+    setShowCreateChannelModal(true);
+  }, []);
+
+  const onCloseModal = useCallback(() => {
+    setShowCreateChannelModal(false);
+  }, []);
   return (
     <>
       <h2>
@@ -34,21 +45,35 @@ const ChannelList: FC = () => {
           />
         </CollapseButton>
         <span>채널</span>
+        <span style={{ paddingRight: '20px', float: 'right' }} onClick={onClickAddChannel}>
+          +
+        </span>
       </h2>
-      <div>
+      <div style={{ maxHeight: '40%', overflow: 'scroll' }}>
         {!channelCollapse &&
           channelData?.map((channel) => {
             return (
-              <NavLink
-                key={channel.name}
-                activeClassName="selected"
-                to={`/workspace/${workspace}/channel/${channel.name}`}
-              >
-                <span># {channel.name}</span>
-              </NavLink>
+              // <NavLink
+              //   key={channel.name}
+              //   activeClassName="selected"
+              //   to={`/workspace/${workspace}/channel/${channel.name}`}
+              // >
+              //   <span># {channel.name}</span>
+              // </NavLink>
+              <Div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <div>
+                  <span> {channel.name}</span>
+                </div>
+                <OptionBox />
+              </Div>
             );
           })}
       </div>
+      <CreateChannelModal
+        show={showCreateChannelModal}
+        onCloseModal={onCloseModal}
+        setShowCreateChannelModal={setShowCreateChannelModal}
+      />
     </>
   );
 };
