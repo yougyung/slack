@@ -53,10 +53,10 @@ const InviteChannelModal: FC<Props> = ({ show, onCloseModal, setShowInviteChanne
     <Modal show={show} onCloseModal={onCloseModal}>
       <form onSubmit={onInviteMember}>
         <Label id="member-label">
-          <span>채널 멤버 초대</span>
+          <span>이메일</span>
           <Input id="member" value={newMember} onChange={onChangeNewMember} />
         </Label>
-        <Button type="submit">초대하기</Button>
+        <Button type="submit">채널로 초대하기</Button>
       </form>
     </Modal>
   );

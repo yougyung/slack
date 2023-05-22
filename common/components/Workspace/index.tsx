@@ -23,8 +23,8 @@ import {
   ProfileImg,
   ProfileModal,
   RightMenu,
+  Users,
   WorkspaceButton,
-  WorkspaceModal,
   WorkspaceName,
   WorkspaceWrapper,
   Workspaces,
@@ -175,25 +175,25 @@ const Workspace: VFC = () => {
           <AddButton onClick={onCLickCreateWorkspace}>+</AddButton>
         </Workspaces>
         <Channels>
-          <WorkspaceName onClick={toggleWorkspaceModal}>Commu</WorkspaceName>
+          <WorkspaceName>{workspace}</WorkspaceName>
           <MenuScroll>
-            <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}>
-              <WorkspaceModal>
-                <h2>community</h2>
-
-                <button onClick={onLogout}>로그아웃</button>
-              </WorkspaceModal>
-            </Menu>
+            <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}></Menu>
             <ChannelList />
-            <DMList />
           </MenuScroll>
         </Channels>
+
         <Chats>
           <Switch>
             <Route path="/workspace/:workspace/channel/:channel" component={Channel} />
             <Route path="/workspace/:workspace/dm/:id" component={DirectMessage} />
           </Switch>
         </Chats>
+        <Users>
+          <MenuScroll>
+            <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}></Menu>
+            <DMList />
+          </MenuScroll>
+        </Users>
       </WorkspaceWrapper>
       <Modal show={showCreateWorkspaceModal} onCloseModal={onCloseModal}>
         <form onSubmit={onCreateWorkspace}>

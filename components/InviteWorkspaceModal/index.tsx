@@ -53,7 +53,7 @@ const InviteWorkspaceModal: FC<Props> = ({ show, onCloseModal, setShowInviteWork
           <span>이메일</span>
           <Input id="member" type="email" value={newMember} onChange={onChangeNewMember} />
         </Label>
-        <Button type="submit">초대하기</Button>
+        <Button type="submit">워크 스페이스로 초대하기</Button>
       </form>
     </Modal>
   );

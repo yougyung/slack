@@ -119,6 +119,26 @@ export const Channels = styled.nav`
   }
 `;
 
+export const Users = styled.nav`
+  width: 260px;
+  border-top: 1px solid #fff;
+  display: inline-flex;
+  flex-direction: column;
+  background: #0f172a;
+  color: rgb(188, 171, 188);
+  vertical-align: top;
+
+  & h2 {
+    height: 36px;
+    line-height: 36px;
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 15px;
+  }
+`;
+
 export const WorkspaceName = styled.button`
   height: 64px;
   line-height: 64px;
@@ -143,25 +163,6 @@ export const WorkspaceName = styled.button`
 export const MenuScroll = styled.div`
   height: calc(100vh - 102px);
   overflow-y: auto;
-`;
-
-export const WorkspaceModal = styled.div`
-  padding: 10px 0 0;
-  & h2 {
-    padding-left: 20px;
-  }
-  & > button {
-    width: 100%;
-    height: 28px;
-    padding: 4px;
-    border: none;
-    background: transparent;
-    border-top: 1px solid rgb(28, 29, 28);
-    cursor: pointer;
-    &:last-of-type {
-      border-bottom: 1px solid rgb(28, 29, 28);
-    }
-  }
 `;
 
 export const Chats = styled.div`

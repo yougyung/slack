@@ -1,5 +1,3 @@
-// import useSocket from '@hooks/useSocket';
-import OptionBox from '@common/components/OptionBox';
 import CreateChannelModal from '@components/CreateChannelModal';
 import { CollapseButton, Div } from '@components/DMList/style';
 import { IChannel, IUser } from '@typings/db';
@@ -34,22 +32,16 @@ const ChannelList: FC = () => {
   const onCloseModal = useCallback(() => {
     setShowCreateChannelModal(false);
   }, []);
+
   return (
     <>
-      <h2>
-        <CollapseButton collapse={channelCollapse} onClick={toggleChannelCollapse}>
-          <i
-            className="c-icon p-channel_sidebar__section_heading_expand p-channel_sidebar__section_heading_expand--show_more_feature c-icon--caret-right c-icon--inherit c-icon--inline"
-            data-qa="channel-section-collapse"
-            aria-hidden="true"
-          />
-        </CollapseButton>
-        <span>채널</span>
-        <span style={{ paddingRight: '20px', float: 'right' }} onClick={onClickAddChannel}>
-          +
-        </span>
-      </h2>
-      <div style={{ maxHeight: '40%', overflow: 'scroll' }}>
+      <div style={{ display: 'flex', padding: '10px 0' }}>
+        <span style={{ fontWeight: 800, padding: '0 20px' }}>채널</span>
+        <div style={{ width: '18px', paddingTop: '2px' }} onClick={onClickAddChannel}>
+          <img src="/assets/create.svg" />
+        </div>
+      </div>
+      <div>
         {!channelCollapse &&
           channelData?.map((channel) => {
             return (
@@ -60,11 +52,10 @@ const ChannelList: FC = () => {
               // >
               //   <span># {channel.name}</span>
               // </NavLink>
-              <Div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                <div>
-                  <span> {channel.name}</span>
-                </div>
-                <OptionBox />
+
+              <Div>
+                <img src="/assets/hashtag.svg" style={{ width: '10px' }} />
+                <span> {channel.name}</span>
               </Div>
             );
           })}

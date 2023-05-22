@@ -1,6 +1,6 @@
 import { CollapseButton } from '@components/DMList/style';
 import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
-import Member from '@components/member';
+import Member from '@components/Member';
 import { IUser, IUserWithOnline } from '@typings/db';
 import fetcher from '@utils/fetcher';
 import React, { FC, useCallback, useState } from 'react';
@@ -31,19 +31,12 @@ const DMList: FC = () => {
   }, []);
   return (
     <>
-      <h2>
-        <CollapseButton collapse={channelCollapse} onClick={toggleChannelCollapse}>
-          <i
-            className="c-icon p-channel_sidebar__section_heading_expand p-channel_sidebar__section_heading_expand--show_more_feature c-icon--caret-right c-icon--inherit c-icon--inline"
-            data-qa="channel-section-collapse"
-            aria-hidden="true"
-          />
-        </CollapseButton>
-        <span>사용자</span>
-        <span style={{ paddingRight: '20px', float: 'right' }} onClick={onClickInviteWorkspace}>
-          +
-        </span>
-      </h2>
+      <div style={{ display: 'flex', padding: '10px 0' }}>
+        <span style={{ fontWeight: 800, padding: '0 20px' }}>워크스페이스 내 사용자</span>
+        <div style={{ width: '18px', paddingTop: '2px' }} onClick={onClickInviteWorkspace}>
+          <img src="/assets/create.svg" />
+        </div>
+      </div>
       <div>
         {!channelCollapse &&
           memberData?.map((member) => {
