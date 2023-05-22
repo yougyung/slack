@@ -1,6 +1,9 @@
+import ExtraBar from '@common/components/ExtraBar';
+import { MenuScroll, Users } from '@common/components/Workspace/style';
 import ChatBox from '@components/ChatBox';
 import ChatList from '@components/ChatList';
 import InviteChannelModal from '@components/InviteChannelModal';
+import Menu from '@components/Menu';
 import useInput from '@hooks/useInput';
 import useSocket from '@hooks/useSocket';
 import { Container, Header, DragOver } from '@pages/Channel/style';
@@ -16,6 +19,7 @@ import useSWRInfinite from 'swr/infinite';
 
 const Channel = () => {
   const { workspace, channel } = useParams<{ workspace: string; channel: string }>();
+  const [rightbar, setRightbar] = useState(true);
   const { data: myData } = useSWR('/api/users', fetcher);
   const [chat, onChangeChat, setChat] = useInput('');
   const { data: channelData } = useSWR<IChannel>(`/api/workspaces/${workspace}/channels/${channel}`, fetcher);
@@ -127,30 +131,38 @@ const Channel = () => {
   const chatSections = makeSection(chatData ? chatData.flat().reverse() : []);
 
   return (
-    <Container>
-      <Header>
-        <span>#{channel}</span>
-        <div className="header-right">
-          <span>{channelMembersData?.length}</span>
-          <button
-            onClick={onClickInviteChannel}
-            className="c-button-unstyled p-ia__view_header__button"
-            aria-label="Add people to #react-native"
-            data-sk="tooltip_parent"
-            type="button"
-          >
-            <i className="c-icon p-ia__view_header__button_icon c-icon--add-user" aria-hidden="true" />
-          </button>
-        </div>
-      </Header>
-      <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />
-      <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
-      <InviteChannelModal
-        show={showInviteChannelModal}
-        onCloseModal={onCloseModal}
-        setShowInviteChannelModal={setShowInviteChannelModal}
+    <div style={{ display: 'flex' }}>
+      <Container style={{ width: '100%' }}>
+        <Header>
+          <span>#{channel}</span>
+          <div className="header-right">
+            {/* <span>{channelMembersData?.length}</span>
+            <button
+              onClick={onClickInviteChannel}
+              className="c-button-unstyled p-ia__view_header__button"
+              aria-label="Add people to #react-native"
+              data-sk="tooltip_parent"
+              type="button"
+            >
+              <i className="c-icon p-ia__view_header__button_icon c-icon--add-user" aria-hidden="true" />
+            </button> */}
+          </div>
+        </Header>
+        <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />
+        <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
+        <InviteChannelModal
+          show={showInviteChannelModal}
+          onCloseModal={onCloseModal}
+          setShowInviteChannelModal={setShowInviteChannelModal}
+        />
+      </Container>
+      <img
+        src={`/assets/${rightbar ? `right` : `left`}_arrow.svg`}
+        style={{ width: '30px' }}
+        onClick={() => setRightbar(!rightbar)}
       />
-    </Container>
+      {rightbar && <ExtraBar />}
+    </div>
   );
 };
 

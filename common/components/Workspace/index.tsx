@@ -29,8 +29,8 @@ import {
   WorkspaceWrapper,
   Workspaces,
 } from './style';
-import CreateChannelModal from '@components/CreateChannelModal';
-import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
+// import CreateChannelModal from '@components/CreateChannelModal';
+// import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
 import InviteChannelModal from '@components/InviteChannelModal';
 import useSocket from '@hooks/useSocket';
 import ChannelList from '@components/ChannelList';
@@ -137,7 +137,7 @@ const Workspace: VFC = () => {
     return <Redirect to="/login" />;
   }
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <Header>
         <RightMenu>
           <span onClick={onClickUserProfile}>
@@ -163,22 +163,23 @@ const Workspace: VFC = () => {
           </span>
         </RightMenu>
       </Header>
+      <Workspaces>
+        {userData?.Workspaces.map((ws) => {
+          return (
+            <Link key={ws.id} to={`/workspace/123/channel/일반`}>
+              <WorkspaceButton>{ws.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
+            </Link>
+          );
+        })}
+        <AddButton onClick={onCLickCreateWorkspace}>+</AddButton>
+      </Workspaces>
       <WorkspaceWrapper>
-        <Workspaces>
-          {userData?.Workspaces.map((ws) => {
-            return (
-              <Link key={ws.id} to={`/workspace/123/channel/일반`}>
-                <WorkspaceButton>{ws.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
-              </Link>
-            );
-          })}
-          <AddButton onClick={onCLickCreateWorkspace}>+</AddButton>
-        </Workspaces>
         <Channels>
           <WorkspaceName>{workspace}</WorkspaceName>
           <MenuScroll>
             <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}></Menu>
             <ChannelList />
+            <DMList />
           </MenuScroll>
         </Channels>
 
@@ -188,12 +189,6 @@ const Workspace: VFC = () => {
             <Route path="/workspace/:workspace/dm/:id" component={DirectMessage} />
           </Switch>
         </Chats>
-        <Users>
-          <MenuScroll>
-            <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}></Menu>
-            <DMList />
-          </MenuScroll>
-        </Users>
       </WorkspaceWrapper>
       <Modal show={showCreateWorkspaceModal} onCloseModal={onCloseModal}>
         <form onSubmit={onCreateWorkspace}>

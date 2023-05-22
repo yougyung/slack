@@ -36,8 +36,8 @@ const ChannelList: FC = () => {
   return (
     <>
       <div style={{ display: 'flex', padding: '10px 0' }}>
-        <span style={{ fontWeight: 800, padding: '0 20px' }}>채널</span>
-        <div style={{ width: '18px', paddingTop: '2px' }} onClick={onClickAddChannel}>
+        <span style={{ fontWeight: 700, fontSize: '14px', padding: '0 36px' }}>채널</span>
+        <div style={{ width: '18px' }} onClick={onClickAddChannel}>
           <img src="/assets/create.svg" />
         </div>
       </div>
@@ -55,7 +55,7 @@ const ChannelList: FC = () => {
 
               <Div>
                 <img src="/assets/hashtag.svg" style={{ width: '10px' }} />
-                <span> {channel.name}</span>
+                <span style={{ fontWeight: 800 }}> {channel.name}</span>
               </Div>
             );
           })}

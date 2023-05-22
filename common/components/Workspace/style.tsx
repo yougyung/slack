@@ -9,7 +9,6 @@ export const Header = styled.header`
   background: #0f172a;
   color: #ffffff;
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  padding: 5px;
   text-align: center;
 `;
 
@@ -69,7 +68,7 @@ export const Workspaces = styled.div`
   border-right: 1px solid #fff;
   vertical-align: top;
   text-align: center;
-  padding: 15px 0 0;
+  padding: 15px 5px;
 `;
 
 export const Channels = styled.nav`
@@ -123,7 +122,6 @@ export const Users = styled.nav`
   width: 260px;
   border-top: 1px solid #fff;
   display: inline-flex;
-  flex-direction: column;
   background: #0f172a;
   color: rgb(188, 171, 188);
   vertical-align: top;
@@ -161,7 +159,7 @@ export const WorkspaceName = styled.button`
 `;
 
 export const MenuScroll = styled.div`
-  height: calc(100vh - 102px);
+  height: calc(100vh - 64px);
   overflow-y: auto;
 `;
 
@@ -184,12 +182,14 @@ export const WorkspaceButton = styled.button`
   display: inline-block;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  background: white;
-  border: 3px solid #3f0e40;
+  border-radius: 15px;
+  border: none;
   margin-bottom: 15px;
   font-size: 18px;
   font-weight: 700;
-  color: black;
   cursor: pointer;
+  &:hover {
+    border-radius: 10px;
+    background-color: white;
+  }
 `;
