@@ -6,7 +6,7 @@ import InviteChannelModal from '@components/InviteChannelModal';
 import Menu from '@components/Menu';
 import useInput from '@hooks/useInput';
 import useSocket from '@hooks/useSocket';
-import { Container, Header, DragOver } from '@pages/Channel/style';
+import { Container, Header, DragOver, Category, CategoryBox } from '@pages/Channel/style';
 import { IChannel, IChat, IUser } from '@typings/db';
 import fetcher from '@utils/fetcher';
 import makeSection from '@utils/makeSection';
@@ -146,6 +146,11 @@ const Channel = () => {
             >
               <i className="c-icon p-ia__view_header__button_icon c-icon--add-user" aria-hidden="true" />
             </button> */}
+            <CategoryBox>
+              <Category>chatting</Category>
+              <Category>call</Category>
+              <Category>memo</Category>
+            </CategoryBox>
           </div>
         </Header>
         <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />

@@ -3,9 +3,23 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: calc(100vh);
+  height: 100vh;
   flex-flow: column;
   position: relative;
+`;
+export const CategoryBox = styled.div`
+  position: relative;
+  display: flex;
+  bottom: -22px;
+`;
+export const Category = styled.div`
+  padding: 0 10px;
+  color: #71717a;
+  &: hover {
+    font-weight: 700;
+    color: #171c20;
+    border-bottom: 2px solid #dfdfdf;
+  }
 `;
 
 export const Header = styled.header`
@@ -20,6 +34,7 @@ export const Header = styled.header`
   
   & .header-right {
     display: flex;
+    font-weight:600;
     flex: 1;
     justify-content: flex-end;
     align-items: center;

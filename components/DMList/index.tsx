@@ -32,7 +32,7 @@ const DMList: FC = () => {
   return (
     <>
       <div style={{ display: 'flex', padding: '10px 0' }}>
-        <span style={{ fontWeight: 700, padding: '0 30px' }}>워크스페이스 내 사용자</span>
+        <span style={{ fontSize: '14px', fontWeight: 700, padding: '0 30px' }}>워크스페이스 내 사용자</span>
         <div style={{ width: '18px', paddingTop: '2px' }} onClick={onClickInviteWorkspace}>
           <img src="/assets/create.svg" />
         </div>

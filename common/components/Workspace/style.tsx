@@ -5,11 +5,10 @@ export const RightMenu = styled.div`
 `;
 
 export const Header = styled.header`
-  height: 38px;
+  box-shadow: 5px 5px;
   background: #0f172a;
   color: #ffffff;
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  text-align: center;
 `;
 
 export const ProfileImg = styled.img`
@@ -63,9 +62,7 @@ export const Workspaces = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  background: #0f172a;
-  border-top: 1px solid #fff;
-  border-right: 1px solid #fff;
+  background: #1e293b;
   vertical-align: top;
   text-align: center;
   padding: 15px 5px;
@@ -75,7 +72,7 @@ export const Channels = styled.nav`
   width: 260px;
   display: inline-flex;
   flex-direction: column;
-  background: #0f172a;
+  background: #1e293b;
   color: rgb(188, 171, 188);
   vertical-align: top;
   & a {
@@ -120,7 +117,6 @@ export const Channels = styled.nav`
 
 export const Users = styled.nav`
   width: 260px;
-  border-top: 1px solid #fff;
   display: inline-flex;
   background: #0f172a;
   color: rgb(188, 171, 188);
@@ -138,22 +134,15 @@ export const Users = styled.nav`
 `;
 
 export const WorkspaceName = styled.button`
-  height: 64px;
   line-height: 64px;
   border: none;
+  text-shadow: 2px 2px 2px gray;
   width: 100%;
-  text-align: left;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
   font-weight: 900;
   font-size: 24px;
-  background: transparent;
+  background: #1e293b;
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space: nowrap;
-  padding: 0;
-  padding-left: 16px;
-  margin: 0;
   color: white;
   cursor: pointer;
 `;
@@ -161,6 +150,10 @@ export const WorkspaceName = styled.button`
 export const MenuScroll = styled.div`
   height: calc(100vh - 64px);
   overflow-y: auto;
+  margin-left: 10px;
+  padding: 5px 0;
+  border-radius: 10px 0;
+  background: #0f172a;
 `;
 
 export const Chats = styled.div`
@@ -176,6 +169,16 @@ export const AddButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+`;
+
+export const ExitButton = styled.button`
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
 `;
 
 export const WorkspaceButton = styled.button`

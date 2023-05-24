@@ -15,6 +15,7 @@ import { Button, Input, Label } from '@pages/SignUp/style';
 import { toast } from 'react-toastify';
 import {
   AddButton,
+  ExitButton,
   Channels,
   Chats,
   Header,
@@ -138,31 +139,6 @@ const Workspace: VFC = () => {
   }
   return (
     <div style={{ display: 'flex' }}>
-      <Header>
-        <RightMenu>
-          <span onClick={onClickUserProfile}>
-            <ProfileImg src={gravatar.url(userData.email, { s: '28px', d: 'retro' })} alt={userData.nickname} />
-            {showUserMenu && (
-              <Menu style={{ right: 0, top: 0 }} show={showUserMenu} onCloseModal={onClickUserProfile}>
-                <ProfileModal>
-                  <img
-                    src={gravatar.url(userData.nickname, {
-                      s: '36px',
-                      d: 'retro',
-                    })}
-                    alt={userData.nickname}
-                  />
-                  <div>
-                    <span id="profile-name">{userData.nickname}</span>
-                    <span id="profile-active">active</span>
-                  </div>
-                </ProfileModal>
-                <LogOutButton onClick={onLogout}>로그아웃</LogOutButton>
-              </Menu>
-            )}
-          </span>
-        </RightMenu>
-      </Header>
       <Workspaces>
         {userData?.Workspaces.map((ws) => {
           return (
@@ -171,7 +147,11 @@ const Workspace: VFC = () => {
             </Link>
           );
         })}
+
         <AddButton onClick={onCLickCreateWorkspace}>+</AddButton>
+        <ExitButton onClick={onLogout}>
+          <img src="/assets/exit.svg" alt="logout" />
+        </ExitButton>
       </Workspaces>
       <WorkspaceWrapper>
         <Channels>
