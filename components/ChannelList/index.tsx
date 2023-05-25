@@ -1,7 +1,7 @@
 import CreateChannelModal from '@components/CreateChannelModal';
 import { CollapseButton, Div } from '@components/DMList/style';
 import { IChannel, IUser } from '@typings/db';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import React, { FC, useCallback, useState } from 'react';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';

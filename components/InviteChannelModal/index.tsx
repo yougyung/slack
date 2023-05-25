@@ -2,7 +2,7 @@ import Modal from '@components/Modal';
 import useInput from '@hooks/useInput';
 import { Button, Input, Label } from '@pages/SignUp/style';
 import { IUser } from '@typings/db';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import axios from 'axios';
 import React, { FC, useCallback } from 'react';
 import { useParams } from 'react-router';

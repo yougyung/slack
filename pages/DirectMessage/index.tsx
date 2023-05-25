@@ -3,7 +3,7 @@ import gravatar from 'gravatar';
 import useSWRInfinite from 'swr/infinite';
 import useSWR from 'swr';
 import { Container, Header } from './style';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import { useParams } from 'react-router';
 import ChatBox from '@components/ChatBox';
 import useInput from '@hooks/useInput';
@@ -11,7 +11,7 @@ import axios from 'axios';
 import { IDM } from '@typings/db';
 import Scrollbars from 'react-custom-scrollbars-2';
 import ChatList from '@components/ChatList';
-import makeSection from '@utils/makeSection';
+import makeSection from '@common/utils/makeSection';
 import useSocket from '@hooks/useSocket';
 
 const DirectMessage = () => {

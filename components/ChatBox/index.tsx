@@ -6,7 +6,7 @@ import { Mention, SuggestionDataItem } from 'react-mentions';
 import { IUser } from '@typings/db';
 import gravatar from 'gravatar';
 import useSWR from 'swr';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import { useParams } from 'react-router-dom';
 interface Props {
   chat: string;

@@ -2,7 +2,7 @@ import { CollapseButton } from '@components/DMList/style';
 import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
 import Member from '@components/Member';
 import { IUser, IUserWithOnline } from '@typings/db';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import React, { FC, useCallback, useState } from 'react';
 import { useParams } from 'react-router';
 import useSWR from 'swr';

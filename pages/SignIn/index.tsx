@@ -1,24 +1,24 @@
 import useInput from '@hooks/useInput';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from '@pages/SignUp/style';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import useSWR from 'swr';
 
-const LogIn = () => {
+const SignIn = () => {
   const { data, error, mutate } = useSWR(`/api/users`, fetcher);
 
-  const [logInError, setLogInError] = useState(false);
+  const [signInError, setSignInError] = useState(false);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      setLogInError(false);
+      setSignInError(false);
       axios
         .post(
-          `/api/users/login`,
+          `/api/users/logIn`,
           { email, password },
           {
             withCredentials: true,
@@ -28,7 +28,7 @@ const LogIn = () => {
           mutate(response.data, false);
         })
         .catch((error) => {
-          setLogInError(error.response?.data?.statusCode === 401);
+          setSignInError(error.response?.data?.statusCode === 401);
         });
     },
     [email, password],
@@ -39,7 +39,7 @@ const LogIn = () => {
   }
 
   if (data) {
-    return <Redirect to="/workspace/sleact/channel/일반" />;
+    return <Redirect to="/workspace/sleact/chat/일반" />;
   }
 
   // console.log(error, userData);
@@ -63,7 +63,7 @@ const LogIn = () => {
           <div>
             <Input type="password" id="password" name="password" value={password} onChange={onChangePassword} />
           </div>
-          {logInError && <Error>이메일과 비밀번호 조합이 일치하지 않습니다.</Error>}
+          {signInError && <Error>이메일과 비밀번호 조합이 일치하지 않습니다.</Error>}
         </Label>
         <Button type="submit">로그인</Button>
       </Form>
@@ -75,4 +75,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default SignIn;

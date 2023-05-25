@@ -10,11 +10,12 @@ export const Container = styled.div`
 export const CategoryBox = styled.div`
   position: relative;
   display: flex;
-  bottom: -22px;
+  bottom: -21px;
 `;
 export const Category = styled.div`
   padding: 0 10px;
   color: #71717a;
+
   &: hover {
     font-weight: 700;
     color: #171c20;

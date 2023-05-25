@@ -1,5 +1,5 @@
 import useInput from '@hooks/useInput';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import React, { useCallback, useState, VFC } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
@@ -65,7 +65,7 @@ const SignUp = () => {
   }
 
   if (data) {
-    return <Redirect to="/workspace/sleact/channel/일반" />;
+    return <Redirect to="/workspace/sleact/chat/일반" />;
   }
 
   return (
@@ -110,7 +110,7 @@ const SignUp = () => {
       </Form>
       <LinkContainer>
         이미 회원이신가요?&nbsp;
-        <Link to="/login">로그인 하러가기</Link>
+        <Link to="/signIn">로그인 하러가기</Link>
       </LinkContainer>
     </div>
   );

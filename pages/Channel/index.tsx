@@ -1,15 +1,17 @@
 import ExtraBar from '@common/components/ExtraBar';
-import { MenuScroll, Users } from '@common/components/Workspace/style';
+import { MenuScroll, Users } from '@pages/Layout/style';
 import ChatBox from '@components/ChatBox';
 import ChatList from '@components/ChatList';
 import InviteChannelModal from '@components/InviteChannelModal';
 import Menu from '@components/Menu';
+import { NavLink } from 'react-router-dom';
+
 import useInput from '@hooks/useInput';
 import useSocket from '@hooks/useSocket';
 import { Container, Header, DragOver, Category, CategoryBox } from '@pages/Channel/style';
 import { IChannel, IChat, IUser } from '@typings/db';
-import fetcher from '@utils/fetcher';
-import makeSection from '@utils/makeSection';
+import fetcher from '@common/utils/fetcher';
+import makeSection from '@common/utils/makeSection';
 import axios from 'axios';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
@@ -147,9 +149,15 @@ const Channel = () => {
               <i className="c-icon p-ia__view_header__button_icon c-icon--add-user" aria-hidden="true" />
             </button> */}
             <CategoryBox>
-              <Category>chatting</Category>
-              <Category>call</Category>
-              <Category>memo</Category>
+              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/chat/${channel}`}>
+                <Category>chatting</Category>
+              </NavLink>
+              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${channel}`}>
+                <Category>call</Category>
+              </NavLink>
+              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${channel}`}>
+                <Category>memo</Category>
+              </NavLink>
             </CategoryBox>
           </div>
         </Header>

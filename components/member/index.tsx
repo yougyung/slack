@@ -1,7 +1,7 @@
 import { Div } from '@components/DMList/style';
 import useSocket from '@hooks/useSocket';
 import { IUser, IUserWithOnline } from '@typings/db';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 import gravatar from 'gravatar';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';

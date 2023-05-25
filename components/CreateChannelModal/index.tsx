@@ -3,13 +3,13 @@ import { Button, Input, Label } from '@pages/SignUp/style';
 import React, { VFC, useCallback } from 'react';
 import useInput from '@hooks/useInput';
 import axios from 'axios';
-import Workspace from '@common/components/Workspace';
+import Workspace from '@pages/Layout';
 import { useParams } from 'react-router';
 import { ConcatenationScope } from 'webpack';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
 import { IChannel, IUser } from '@typings/db';
-import fetcher from '@utils/fetcher';
+import fetcher from '@common/utils/fetcher';
 
 interface Props {
   show: boolean;

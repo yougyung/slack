@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users } from '../Workspace/style';
+import { Users } from '../../../pages/Layout/style';
 
 function ExtraBar(member: any) {
   return <Users>alarm</Users>;
