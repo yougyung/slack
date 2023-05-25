@@ -8,7 +8,7 @@ import { Redirect, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Modal from '@components/Modal';
+import Modal from '@common/components/Modal';
 import { Button, Input, Label } from '@pages/SignUp/style';
 import useInput from '@hooks/useInput';
 

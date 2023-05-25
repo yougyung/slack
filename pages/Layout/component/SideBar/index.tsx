@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { Channels, MenuScroll, WorkspaceName } from '../../style';
-import Menu from '@components/Menu';
-import ChannelList from '@components/ChannelList';
-import DMList from '@components/DMList';
-import InviteChannelModal from '@components/InviteChannelModal';
+import Menu from '@common/components/Menu';
+import ChannelList from '../ChannelList';
+import DMList from '../DMList';
+import InviteChannelModal from '@pages/Channel/component/InviteChannelModal';
 import { useParams } from 'react-router';
 
 const SideBar = () => {

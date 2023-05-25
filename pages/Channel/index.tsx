@@ -1,9 +1,9 @@
 import ExtraBar from '@common/components/ExtraBar';
 import { MenuScroll, Users } from '@pages/Layout/style';
-import ChatBox from '@components/ChatBox';
-import ChatList from '@components/ChatList';
-import InviteChannelModal from '@components/InviteChannelModal';
-import Menu from '@components/Menu';
+import ChatBox from '@common/components/ChatBox';
+import ChatList from '@common/components/ChatList';
+import InviteChannelModal from '@pages/Channel/component/InviteChannelModal';
+import Menu from '@common/components/Menu';
 import { NavLink } from 'react-router-dom';
 
 import useInput from '@hooks/useInput';

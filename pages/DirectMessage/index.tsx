@@ -5,12 +5,12 @@ import useSWR from 'swr';
 import { Container, Header } from './style';
 import fetcher from '@common/utils/fetcher';
 import { useParams } from 'react-router';
-import ChatBox from '@components/ChatBox';
+import ChatBox from '@common/components/ChatBox';
 import useInput from '@hooks/useInput';
 import axios from 'axios';
 import { IDM } from '@typings/db';
 import Scrollbars from 'react-custom-scrollbars-2';
-import ChatList from '@components/ChatList';
+import ChatList from '@common/components/ChatList';
 import makeSection from '@common/utils/makeSection';
 import useSocket from '@hooks/useSocket';
 

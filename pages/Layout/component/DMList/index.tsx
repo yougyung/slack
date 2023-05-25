@@ -1,6 +1,6 @@
-import { CollapseButton } from '@components/DMList/style';
-import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
-import Member from '@components/Member';
+import { CollapseButton } from '@pages/Layout/component/DMList/style';
+import InviteWorkspaceModal from '@pages/Layout/component/InviteWorkspaceModal';
+import Member from '@common/components/Member';
 import { IUser, IUserWithOnline } from '@typings/db';
 import fetcher from '@common/utils/fetcher';
 import React, { FC, useCallback, useState } from 'react';

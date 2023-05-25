@@ -21,7 +21,6 @@ const useSocket = (workspace?: string): [Socket | undefined, () => void] => {
       transports: ['websocket'],
     });
   }
-
   return [sockets[workspace], disconnect];
 };
 

@@ -1,7 +1,7 @@
 import { IChat, IDM } from '@typings/db';
 import { ChatZone, Section, StickyHeader } from './style';
 import React, { ForwardedRef, MutableRefObject, RefObject, forwardRef, useCallback } from 'react';
-import Chat from '@components/Chat';
+import Chat from '@common/components/Chat';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
 interface Props {

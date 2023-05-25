@@ -1,4 +1,4 @@
-import Modal from '@components/Modal';
+import Modal from '@common/components/Modal';
 import { Button, Input, Label } from '@pages/SignUp/style';
 import React, { VFC, useCallback } from 'react';
 import useInput from '@hooks/useInput';

@@ -1,5 +1,5 @@
-import CreateChannelModal from '@components/CreateChannelModal';
-import { CollapseButton, Div } from '@components/DMList/style';
+import CreateChannelModal from '@pages/Layout/component/CreateChannelModal';
+import { CollapseButton, Div } from '@pages/Layout/component/DMList/style';
 import { IChannel, IUser } from '@typings/db';
 import fetcher from '@common/utils/fetcher';
 import React, { FC, useCallback, useState } from 'react';
