@@ -45,7 +45,7 @@ const ChannelList: FC = () => {
         {!channelCollapse &&
           channelData?.map((channel) => {
             return (
-              <Div>
+              <Div key={channel.name}>
                 <NavLink
                   key={channel.name}
                   activeClassName="selected"

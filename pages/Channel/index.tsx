@@ -3,7 +3,6 @@ import { MenuScroll, Users } from '@pages/Layout/style';
 import ChatBox from '@common/components/ChatBox';
 import ChatList from '@common/components/ChatList';
 import InviteChannelModal from '@pages/Channel/component/InviteChannelModal';
-import Menu from '@common/components/Menu';
 import { NavLink } from 'react-router-dom';
 
 import useInput from '@hooks/useInput';
@@ -46,7 +45,6 @@ const Channel = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(chat);
       if (chat?.trim() && chatData && channelData) {
         const savedChat = chat;
         mutateChat((prevChatData) => {
@@ -89,7 +87,6 @@ const Channel = () => {
               scrollbarRef.current.getScrollHeight() <
               scrollbarRef.current.getClientHeight() + scrollbarRef.current.getScrollTop() + 150
             ) {
-              console.log('scrollToBottom!', scrollbarRef.current?.getValues());
               setTimeout(() => {
                 scrollbarRef.current?.scrollToBottom();
               }, 50);
@@ -110,9 +107,7 @@ const Channel = () => {
 
   useEffect(() => {
     if (chatData?.length === 1) {
-      console.log('toBottomWhenLoaded', scrollbarRef.current);
       setTimeout(() => {
-        console.log('scrollbar', scrollbarRef.current);
         scrollbarRef.current?.scrollToBottom();
       }, 500);
     }

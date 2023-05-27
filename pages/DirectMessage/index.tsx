@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import gravatar from 'gravatar';
 import useSWRInfinite from 'swr/infinite';
 import useSWR from 'swr';
-import { Container, Header } from './style';
+import { Container } from './style';
+import { Header } from '@pages/Channel/style';
 import fetcher from '@common/utils/fetcher';
 import { useParams } from 'react-router';
 import ChatBox from '@common/components/ChatBox';
@@ -13,11 +14,15 @@ import Scrollbars from 'react-custom-scrollbars-2';
 import ChatList from '@common/components/ChatList';
 import makeSection from '@common/utils/makeSection';
 import useSocket from '@hooks/useSocket';
+import ExtraBar from '@common/components/ExtraBar';
+import { Category, CategoryBox } from '@pages/Channel/style';
+import { NavLink } from 'react-router-dom';
 
 const DirectMessage = () => {
   const { workspace, id } = useParams<{ workspace: string; id: string }>();
   const { data: userData } = useSWR(`/api/workspaces/${workspace}/users/${id}`, fetcher);
   const { data: myData } = useSWR(`/api/users`, fetcher);
+  const [rightbar, setRightbar] = useState(true);
   const [chat, onChangeChat, setChat] = useInput('');
   const {
     data: chatData,
@@ -37,7 +42,6 @@ const DirectMessage = () => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(chat);
       if (chat?.trim() && chatData) {
         const savedChat = chat;
         mutateChat((prevChatData) => {
@@ -62,7 +66,9 @@ const DirectMessage = () => {
           .then(() => {
             mutateChat();
           })
-          .catch(console.error);
+          .catch((error) => {
+            console.dir(error);
+          });
       }
     },
     [chat, chatData, myData, userData, workspace, id],
@@ -79,7 +85,6 @@ const DirectMessage = () => {
             scrollbarRef.current.getScrollHeight() <
             scrollbarRef.current.getClientHeight() + scrollbarRef.current.getScrollTop() + 500
           ) {
-            console.log('scrollToBottom!', scrollbarRef.current?.getValues());
             setTimeout(() => {
               scrollbarRef.current?.scrollToBottom();
             }, 50);
@@ -101,14 +106,35 @@ const DirectMessage = () => {
   const chatSections = makeSection(chatData ? chatData.flat().reverse() : []);
 
   return (
-    <Container>
-      <Header>
-        <img src={gravatar.url(userData.email, { s: '24px', d: 'retro' })} alt={userData.nicknam} />
-        <span>{userData.nickname}</span>
-      </Header>
-      <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />
-      <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
-    </Container>
+    <div style={{ display: 'flex' }}>
+      <Container style={{ width: '100%' }}>
+        <Header>
+          <img src={gravatar.url(userData.email, { s: '24px', d: 'retro' })} alt={userData.nicknam} />
+          <span>{userData.nickname}</span>
+          <div className="header-right">
+            <CategoryBox>
+              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/chat/${id}`}>
+                <Category>chatting</Category>
+              </NavLink>
+              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${id}`}>
+                <Category>call</Category>
+              </NavLink>
+              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${id}`}>
+                <Category>memo</Category>
+              </NavLink>
+            </CategoryBox>
+          </div>
+        </Header>
+        <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />
+        <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
+      </Container>
+      <img
+        src={`/assets/${rightbar ? `right` : `left`}_arrow.svg`}
+        style={{ width: '30px' }}
+        onClick={() => setRightbar(!rightbar)}
+      />
+      {rightbar && <ExtraBar />}
+    </div>
   );
 };
 export default DirectMessage;

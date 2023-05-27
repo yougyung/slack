@@ -22,7 +22,6 @@ function Member(member: Props) {
   const [onlineList, setOnlineList] = useState<number[]>([]);
 
   useEffect(() => {
-    console.log('DMList: workspace 바꼈다', workspace);
     setOnlineList([]);
   }, [workspace]);
 
@@ -30,40 +29,37 @@ function Member(member: Props) {
     socket?.on('onlineList', (data: number[]) => {
       setOnlineList(data);
     });
-    console.log('socket on dm', socket?.hasListeners('dm'), socket);
     return () => {
-      console.log('socket off dm', socket?.hasListeners('dm'));
       socket?.off('onlineList');
     };
   }, [socket]);
-  const isOnline = onlineList.includes(member.id);
 
+  console.log(onlineList);
+  const isOnline = onlineList.includes(member.id);
   return (
-    <>
-      <Div>
-        <NavLink key={member.id} activeClassName="selected" to={`/workspace/${workspace}/dm/${member.id}`}>
-          <div style={{ display: 'flex' }}>
-            <img
-              style={{ borderRadius: '10px', marginRight: '8px' }}
-              src={gravatar.url(member.email, { s: '36px', d: 'retro' })}
-              alt={member.nickname}
-            />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div>
-                <i
-                  className={`c-icon ${
-                    isOnline ? 'c-presence--active c-icon--presence-online' : 'c-icon--presence-offline'
-                  }`}
-                  style={{ fontSize: '2px !important', padding: 0, margin: 0 }}
-                />
-                {member.id === userData?.id && <span> (나) </span>}
-                <span>{member.nickname}</span>
-              </div>
+    <Div>
+      <NavLink key={member.id} activeClassName="selected" to={`/workspace/${workspace}/dm/${member.id}`}>
+        <div style={{ display: 'flex' }}>
+          <img
+            style={{ borderRadius: '10px', marginRight: '8px' }}
+            src={gravatar.url(member.email, { s: '36px', d: 'retro' })}
+            alt={member.nickname}
+          />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div>
+              <i
+                className={`c-icon ${
+                  isOnline ? 'c-presence--active c-icon--presence-online' : 'c-icon--presence-offline'
+                }`}
+                style={{ fontSize: '2px !important', padding: 0, margin: 0 }}
+              />
+              {member.id === userData?.id && <span> (나) </span>}
+              <span>{member.nickname}</span>
             </div>
           </div>
-        </NavLink>
-      </Div>
-    </>
+        </div>
+      </NavLink>
+    </Div>
   );
 }
 

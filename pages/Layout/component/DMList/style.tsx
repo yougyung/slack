@@ -21,7 +21,8 @@ export const CollapseButton = styled.button<{ collapse: boolean }>`
 `;
 
 export const Div = styled.div`
-  min-height: 40px;
+  min-height: 44px;
+  padding-top: 8px;
   &:hover {
     background-color: #1f2937;
   }

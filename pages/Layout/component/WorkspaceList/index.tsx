@@ -25,10 +25,10 @@ const WorkspaceList = () => {
   const [showCreateWorkspaceModal, setShowCreateWorkspaceModal] = useState(false);
   const [newWorkspace, onChangeNewWorkspace, setNewWorkspace] = useInput('');
   const [newUrl, onChangeNewUrl, setNewUrl] = useInput('');
-  const [showInviteChannelModal, setShowInviteChannelModal] = useState(false);
+  //const [showInviteChannelModal, setShowInviteChannelModal] = useState(false);
 
   const onCloseModal = useCallback(() => {
-    setShowInviteChannelModal(false);
+    setShowCreateWorkspaceModal(false);
   }, []);
 
   const { data: channelData } = useSWR<IChannel[]>(userData ? `/api/workspaces/${workspace}/channels` : null, fetcher);
@@ -89,7 +89,7 @@ const WorkspaceList = () => {
       <Workspaces>
         {userData?.Workspaces.map((ws: any) => {
           return (
-            <Link key={ws.id} to={`/workspace/${ws.url}/chat/일반`}>
+            <Link key={ws.id} to={`/workspace/${ws.name}/chat/일반`}>
               <WorkspaceButton>{ws.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
             </Link>
           );

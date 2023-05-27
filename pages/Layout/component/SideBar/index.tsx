@@ -1,13 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import { Channels, MenuScroll, WorkspaceName } from '../../style';
-import Menu from '@common/components/Menu';
 import ChannelList from '../ChannelList';
 import DMList from '../DMList';
 import InviteChannelModal from '@pages/Channel/component/InviteChannelModal';
 import { useParams } from 'react-router';
+import useSWR from 'swr';
+import fetcher from '@common/utils/fetcher';
+import { IWorkspace } from '@typings/db';
 
 const SideBar = () => {
   const { workspace } = useParams<{ workspace: string }>();
+  const { data: userData } = useSWR('/api/users', fetcher);
   const [showWorkspaceModal, setShowWorkspaceModal] = useState(false);
   const [showInviteChannelModal, setShowInviteChannelModal] = useState(false);
 
@@ -22,9 +25,8 @@ const SideBar = () => {
   return (
     <>
       <Channels>
-        <WorkspaceName>{workspace}</WorkspaceName>
+        <WorkspaceName> {userData?.Workspaces.find((ws: IWorkspace) => ws.url === workspace)?.name}</WorkspaceName>
         <MenuScroll>
-          <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}></Menu>
           <ChannelList />
           <DMList />
         </MenuScroll>

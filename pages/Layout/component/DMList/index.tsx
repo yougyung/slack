@@ -18,6 +18,7 @@ const DMList: FC = () => {
     userData ? `/api/workspaces/${workspace}/members` : null,
     fetcher,
   );
+
   const [channelCollapse, setChannelCollapse] = useState(false);
 
   const onCloseModal = useCallback(() => {
@@ -40,7 +41,7 @@ const DMList: FC = () => {
       <div>
         {!channelCollapse &&
           memberData?.map((member) => {
-            return <Member id={member.id} nickname={member.nickname} email={member.email} />;
+            return <Member key={member.id} id={member.id} nickname={member.nickname} email={member.email} />;
           })}
       </div>
 
