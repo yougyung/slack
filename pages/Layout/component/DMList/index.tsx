@@ -40,11 +40,7 @@ const DMList: FC = () => {
       <div>
         {!channelCollapse &&
           memberData?.map((member) => {
-            return (
-              <>
-                <Member id={member.id} nickname={member.nickname} email={member.email} />
-              </>
-            );
+            return <Member id={member.id} nickname={member.nickname} email={member.email} />;
           })}
       </div>
 

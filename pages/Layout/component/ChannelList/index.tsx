@@ -45,17 +45,15 @@ const ChannelList: FC = () => {
         {!channelCollapse &&
           channelData?.map((channel) => {
             return (
-              // <NavLink
-              //   key={channel.name}
-              //   activeClassName="selected"
-              //   to={`/workspace/${workspace}/channel/${channel.name}`}
-              // >
-              //   <span># {channel.name}</span>
-              // </NavLink>
-
               <Div>
-                <img src="/assets/hashtag.svg" style={{ width: '10px' }} />
-                <span style={{ fontWeight: 800 }}> {channel.name}</span>
+                <NavLink
+                  key={channel.name}
+                  activeClassName="selected"
+                  to={`/workspace/${workspace}/chat/${channel.name}`}
+                >
+                  <img src="/assets/hashtag.svg" style={{ width: '10px' }} />
+                  <span style={{ fontWeight: 800 }}> {channel.name}</span>
+                </NavLink>
               </Div>
             );
           })}
