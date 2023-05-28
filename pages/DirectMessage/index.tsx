@@ -109,10 +109,13 @@ const DirectMessage = () => {
     <div style={{ display: 'flex' }}>
       <Container style={{ width: '100%' }}>
         <Header>
-          <img src={gravatar.url(userData.email, { s: '24px', d: 'retro' })} alt={userData.nicknam} />
-          <span>{userData.nickname}</span>
+          <div style={{ display: 'flex', justifyContent: 'align-center' }}>
+            <img src={gravatar.url(userData.email, { s: '24px', d: 'retro' })} alt={userData.nicknam} />
+            <span>{userData.nickname}</span>
+          </div>
           <div className="header-right">
-            <CategoryBox>
+            <div className="header-right-add"></div>
+            <CategoryBox style={{ bottom: '-21px' }}>
               <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/chat/${id}`}>
                 <Category>chatting</Category>
               </NavLink>
@@ -132,6 +135,7 @@ const DirectMessage = () => {
         src={`/assets/${rightbar ? `right` : `left`}_arrow.svg`}
         style={{ width: '30px' }}
         onClick={() => setRightbar(!rightbar)}
+        alt="arrow"
       />
       {rightbar && <ExtraBar />}
     </div>
