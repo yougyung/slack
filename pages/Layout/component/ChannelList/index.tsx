@@ -41,7 +41,7 @@ const ChannelList: FC = () => {
           <img src="/assets/create.svg" />
         </div>
       </div>
-      <div>
+      <div style={{ maxHeight: '50%', overflow: 'scroll' }}>
         {!channelCollapse &&
           channelData?.map((channel) => {
             return (

@@ -20,9 +20,9 @@ import { NavLink } from 'react-router-dom';
 
 const DirectMessage = () => {
   const { workspace, id } = useParams<{ workspace: string; id: string }>();
+
   const { data: userData } = useSWR(`/api/workspaces/${workspace}/users/${id}`, fetcher);
   const { data: myData } = useSWR(`/api/users`, fetcher);
-  const [rightbar, setRightbar] = useState(true);
   const [chat, onChangeChat, setChat] = useInput('');
   const {
     data: chatData,
@@ -108,36 +108,9 @@ const DirectMessage = () => {
   return (
     <div style={{ display: 'flex' }}>
       <Container style={{ width: '100%' }}>
-        <Header>
-          <div style={{ display: 'flex', justifyContent: 'align-center' }}>
-            <img src={gravatar.url(userData.email, { s: '24px', d: 'retro' })} alt={userData.nicknam} />
-            <span>{userData.nickname}</span>
-          </div>
-          <div className="header-right">
-            <div className="header-right-add"></div>
-            <CategoryBox style={{ bottom: '-21px' }}>
-              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/chat/${id}`}>
-                <Category>chatting</Category>
-              </NavLink>
-              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${id}`}>
-                <Category>call</Category>
-              </NavLink>
-              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${id}`}>
-                <Category>memo</Category>
-              </NavLink>
-            </CategoryBox>
-          </div>
-        </Header>
         <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />
         <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
       </Container>
-      <img
-        src={`/assets/${rightbar ? `right` : `left`}_arrow.svg`}
-        style={{ width: '30px' }}
-        onClick={() => setRightbar(!rightbar)}
-        alt="arrow"
-      />
-      {rightbar && <ExtraBar />}
     </div>
   );
 };

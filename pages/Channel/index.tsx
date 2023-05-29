@@ -1,5 +1,4 @@
 import ExtraBar from '@common/components/ExtraBar';
-import { MenuScroll, Users } from '@pages/Layout/style';
 import ChatBox from '@common/components/ChatBox';
 import ChatList from '@common/components/ChatList';
 import InviteChannelModal from '@pages/Channel/component/InviteChannelModal';
@@ -7,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import useInput from '@hooks/useInput';
 import useSocket from '@hooks/useSocket';
-import { Container, Header, DragOver, Category, CategoryBox } from '@pages/Channel/style';
+import { Container, Header, Category, CategoryBox } from '@pages/Channel/style';
 import { IChannel, IChat, IUser } from '@typings/db';
 import fetcher from '@common/utils/fetcher';
 import makeSection from '@common/utils/makeSection';
@@ -130,34 +129,6 @@ const Channel = () => {
   return (
     <div style={{ display: 'flex' }}>
       <Container style={{ width: '100%' }}>
-        <Header>
-          <span>#{channel}</span>
-          <div className="header-right">
-            <div className="header-right-add">
-              <span>{channelMembersData?.length}</span>
-              <button
-                onClick={onClickInviteChannel}
-                className="c-button-unstyled p-ia__view_header__button"
-                aria-label="Add people to #react-native"
-                data-sk="tooltip_parent"
-                type="button"
-              >
-                <i className="c-icon p-ia__view_header__button_icon c-icon--add-user" aria-hidden="true" />
-              </button>
-            </div>
-            <CategoryBox>
-              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/chat/${channel}`}>
-                <Category>chatting</Category>
-              </NavLink>
-              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${channel}`}>
-                <Category>call</Category>
-              </NavLink>
-              <NavLink style={{ textDecoration: 'none' }} to={`/workspace/${workspace}/note/${channel}`}>
-                <Category>memo</Category>
-              </NavLink>
-            </CategoryBox>
-          </div>
-        </Header>
         <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />
         <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
         <InviteChannelModal
@@ -166,12 +137,6 @@ const Channel = () => {
           setShowInviteChannelModal={setShowInviteChannelModal}
         />
       </Container>
-      <img
-        src={`/assets/${rightbar ? `right` : `left`}_arrow.svg`}
-        style={{ width: '30px' }}
-        onClick={() => setRightbar(!rightbar)}
-      />
-      {rightbar && <ExtraBar />}
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const CategoryBox = styled.div`
   position: relative;
   display: flex;
-  bottom: -4px;
+  bottom: -21px;
 `;
 export const Category = styled.div`
   padding: 0 10px;
@@ -24,8 +24,8 @@ export const Category = styled.div`
 
 export const Header = styled.header`
   height: 64px;
+  min-width:300px;
   display: flex;
-  
   width: 100%;
   --saf-0: rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
   box-shadow: 0 1px 0 var(--saf-0);
@@ -41,6 +41,7 @@ export const Header = styled.header`
       justify-content: flex-end;
     }
     font-weight:600;
+    
 `;
 
 export const DragOver = styled.div`

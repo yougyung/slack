@@ -38,7 +38,7 @@ const DMList: FC = () => {
           <img src="/assets/create.svg" />
         </div>
       </div>
-      <div>
+      <div style={{ maxHeight: '50%', overflow: 'scroll' }}>
         {!channelCollapse &&
           memberData?.map((member) => {
             return <Member key={member.id} id={member.id} nickname={member.nickname} email={member.email} />;
