@@ -1,25 +1,22 @@
-import ExtraBar from '@common/components/ExtraBar';
-import ChatBox from '@common/components/ChatBox';
-import ChatList from '@common/components/ChatList';
-import InviteChannelModal from '@pages/Channel/component/InviteChannelModal';
-import { NavLink } from 'react-router-dom';
-
-import useInput from '@hooks/useInput';
-import useSocket from '@hooks/useSocket';
-import { Container, Header, Category, CategoryBox } from '@pages/Channel/style';
-import { IChannel, IChat, IUser } from '@typings/db';
-import fetcher from '@common/utils/fetcher';
-import makeSection from '@common/utils/makeSection';
-import axios from 'axios';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Scrollbars from 'react-custom-scrollbars-2';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
 import useSWR from 'swr';
 import useSWRInfinite from 'swr/infinite';
+import axios from 'axios';
+
+import useInput from '@hooks/useInput';
+import useSocket from '@hooks/useSocket';
+import { IChannel, IChat } from '@typings/db';
+
+import { Container } from '@pages/Channel/style';
+import fetcher from '@common/utils/fetcher';
+import ChatBox from '@common/components/ChatBox';
+import ChatList from '@common/components/ChatList';
+import makeSection from '@common/utils/makeSection';
+import Scrollbars from 'react-custom-scrollbars-2';
 
 const Channel = () => {
   const { workspace, channel } = useParams<{ workspace: string; channel: string }>();
-  const [rightbar, setRightbar] = useState(true);
   const { data: myData } = useSWR('/api/users', fetcher);
   const [chat, onChangeChat, setChat] = useInput('');
   const { data: channelData } = useSWR<IChannel>(`/api/workspaces/${workspace}/channels/${channel}`, fetcher);
@@ -31,15 +28,11 @@ const Channel = () => {
     (index) => `/api/workspaces/${workspace}/channels/${channel}/chats?perPage=20&page=${index + 1}`,
     fetcher,
   );
-  const { data: channelMembersData } = useSWR<IUser[]>(
-    myData ? `/api/workspaces/${workspace}/channels/${channel}/members` : null,
-    fetcher,
-  );
+
   const [socket] = useSocket(workspace);
   const isEmpty = chatData?.[0]?.length === 0;
   const isReachingEnd = isEmpty || (chatData && chatData[chatData.length - 1]?.length < 20) || false;
   const scrollbarRef = useRef<Scrollbars>(null);
-  const [showInviteChannelModal, setShowInviteChannelModal] = useState(false);
 
   const onSubmitForm = useCallback(
     (e) => {
@@ -112,14 +105,6 @@ const Channel = () => {
     }
   }, [chatData]);
 
-  const onClickInviteChannel = useCallback(() => {
-    setShowInviteChannelModal(true);
-  }, []);
-
-  const onCloseModal = useCallback(() => {
-    setShowInviteChannelModal(false);
-  }, []);
-
   if (!myData) {
     return null;
   }
@@ -131,11 +116,6 @@ const Channel = () => {
       <Container style={{ width: '100%' }}>
         <ChatList chatSections={chatSections} ref={scrollbarRef} setSize={setSize} isReachingEnd={isReachingEnd} />
         <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
-        <InviteChannelModal
-          show={showInviteChannelModal}
-          onCloseModal={onCloseModal}
-          setShowInviteChannelModal={setShowInviteChannelModal}
-        />
       </Container>
     </div>
   );

@@ -1,13 +1,13 @@
 import useInput from '@hooks/useInput';
 import fetcher from '@common/utils/fetcher';
-import React, { useCallback, useState, VFC } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from './style';
 import { Link, Redirect } from 'react-router-dom';
 
 const SignUp = () => {
-  const { data, error, mutate } = useSWR('/api/users', fetcher);
+  const { data } = useSWR('/api/users', fetcher);
 
   const [email, onChangeEmail] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
@@ -64,7 +64,7 @@ const SignUp = () => {
   }
 
   if (data) {
-    return <Redirect to="/workspace/sleact/chat/일반" />;
+    return <Redirect to="/workspace/sleact/channel/일반/chat" />;
   }
 
   return (

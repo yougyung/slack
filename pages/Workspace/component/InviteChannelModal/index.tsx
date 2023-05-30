@@ -15,10 +15,10 @@ interface Props {
   setShowInviteChannelModal: (flag: boolean) => void;
 }
 const InviteChannelModal: FC<Props> = ({ show, onCloseModal, setShowInviteChannelModal }) => {
-  const { workspace, channel } = useParams<{
+  const { workspace } = useParams<{
     workspace: string;
-    channel: string;
   }>();
+  const channel = window.location.pathname.split('/')[4];
   const [newMember, onChangeNewMember, setNewMember] = useInput('');
   const { data: userData } = useSWR<IUser>('/api/users', fetcher);
   const { mutate: revalidateMembers } = useSWR<IUser[]>(

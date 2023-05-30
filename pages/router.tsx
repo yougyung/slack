@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 const SignIn = loadable(() => import('@pages/SignIn'));
 const SignUp = loadable(() => import('@pages/SignUp'));
-const Workspace = loadable(() => import('@pages/Layout'));
+const Workspace = loadable(() => import('@pages/Workspace'));
 
 const App = () => {
   return (

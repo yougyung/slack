@@ -1,9 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import gravatar from 'gravatar';
+import React, { useCallback, useEffect, useRef } from 'react';
 import useSWRInfinite from 'swr/infinite';
 import useSWR from 'swr';
 import { Container } from './style';
-import { Header } from '@pages/Channel/style';
 import fetcher from '@common/utils/fetcher';
 import { useParams } from 'react-router';
 import ChatBox from '@common/components/ChatBox';
@@ -14,9 +12,6 @@ import Scrollbars from 'react-custom-scrollbars-2';
 import ChatList from '@common/components/ChatList';
 import makeSection from '@common/utils/makeSection';
 import useSocket from '@hooks/useSocket';
-import ExtraBar from '@common/components/ExtraBar';
-import { Category, CategoryBox } from '@pages/Channel/style';
-import { NavLink } from 'react-router-dom';
 
 const DirectMessage = () => {
   const { workspace, id } = useParams<{ workspace: string; id: string }>();

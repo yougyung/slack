@@ -21,7 +21,6 @@
     }
   },
   "ts-node": {
-    //일반적으로 webpack은 ts을 인식하지 못함
     "compilerOptions": {
       "module": "commonjs",
       "moduleResolution": "Node",

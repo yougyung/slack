@@ -1,5 +1,4 @@
-import { CollapseButton } from '@pages/Layout/component/DMList/style';
-import InviteWorkspaceModal from '@pages/Layout/component/InviteWorkspaceModal';
+import InviteWorkspaceModal from '@pages/Workspace/component/InviteWorkspaceModal';
 import Member from '@common/components/Member';
 import { IUser, IUserWithOnline } from '@typings/db';
 import fetcher from '@common/utils/fetcher';
@@ -19,14 +18,10 @@ const DMList: FC = () => {
     fetcher,
   );
 
-  const [channelCollapse, setChannelCollapse] = useState(false);
-
   const onCloseModal = useCallback(() => {
     setShowInviteWorkspaceModal(false);
   }, []);
-  const toggleChannelCollapse = useCallback(() => {
-    setChannelCollapse((prev) => !prev);
-  }, []);
+
   const onClickInviteWorkspace = useCallback(() => {
     setShowInviteWorkspaceModal(true);
   }, []);
@@ -39,10 +34,9 @@ const DMList: FC = () => {
         </div>
       </div>
       <div style={{ maxHeight: '50%', overflow: 'scroll' }}>
-        {!channelCollapse &&
-          memberData?.map((member) => {
-            return <Member key={member.id} id={member.id} nickname={member.nickname} email={member.email} />;
-          })}
+        {memberData?.map((member) => {
+          return <Member key={member.id} id={member.id} nickname={member.nickname} email={member.email} />;
+        })}
       </div>
 
       <InviteWorkspaceModal

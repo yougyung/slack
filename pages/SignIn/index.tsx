@@ -1,5 +1,5 @@
 import useInput from '@hooks/useInput';
-import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from '@pages/SignUp/style';
+import { Form, Error, Label, Input, LinkContainer, Button, Header } from '@pages/SignUp/style';
 import fetcher from '@common/utils/fetcher';
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom';
 import useSWR from 'swr';
 
 const SignIn = () => {
-  const { data, error, mutate } = useSWR(`/api/users`, fetcher);
+  const { data, mutate } = useSWR(`/api/users`, fetcher);
 
   const [signInError, setSignInError] = useState(false);
   const [email, onChangeEmail] = useInput('');
@@ -39,7 +39,7 @@ const SignIn = () => {
   }
 
   if (data) {
-    return <Redirect to="/workspace/sleact/chat/일반" />;
+    return <Redirect to="/workspace/sleact/channel/일반/chat" />;
   }
 
   return (

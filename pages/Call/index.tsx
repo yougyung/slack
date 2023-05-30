@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Note = () => {
-  return <div>dfs</div>;
+const Call = () => {
+  return <div>call</div>;
 };
 
-export default Note;
+export default Call;

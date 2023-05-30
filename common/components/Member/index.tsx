@@ -1,4 +1,4 @@
-import { Div } from '@pages/Layout/component/DMList/style';
+import { Div } from '@pages/Workspace/component/DMList/style';
 import useSocket from '@hooks/useSocket';
 import { IUser } from '@typings/db';
 import fetcher from '@common/utils/fetcher';
@@ -34,11 +34,11 @@ function Member(member: Props) {
     };
   }, [socket]);
 
-  console.log(onlineList);
+  //console.log(onlineList);
   const isOnline = onlineList.includes(member.id);
   return (
     <Div>
-      <NavLink key={member.id} activeClassName="selected" to={`/workspace/${workspace}/dm/${member.id}`}>
+      <NavLink key={member.id} activeClassName="selected" to={`/workspace/${workspace}/dm/${member.id}/chat`}>
         <div style={{ display: 'flex' }}>
           <img
             style={{ borderRadius: '10px', marginRight: '8px' }}

@@ -14,11 +14,7 @@ import useInput from '@hooks/useInput';
 
 const WorkspaceList = () => {
   const { workspace } = useParams<{ workspace: string }>();
-  const {
-    data: userData,
-    error,
-    mutate,
-  } = useSWR<IUser | false>('/api/users', fetcher, {
+  const { data: userData, mutate } = useSWR<IUser | false>('/api/users', fetcher, {
     dedupingInterval: 2000,
   });
   const [socket, disconnect] = useSocket(workspace);
@@ -86,7 +82,7 @@ const WorkspaceList = () => {
       <Workspaces>
         {userData?.Workspaces.map((ws: any) => {
           return (
-            <Link key={ws.id} to={`/workspace/${ws.url}/chat/일반`}>
+            <Link key={ws.id} to={`/workspace/${ws.url}/channel/일반/chat`}>
               <WorkspaceButton>{ws.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
             </Link>
           );
