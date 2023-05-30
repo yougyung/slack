@@ -1,7 +1,7 @@
 {
-  "name": "chat application",
+  "name": "communication-tool",
   "version": "1.0.0",
-  "description": "",
+  "description": "A communication tool for my team",
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --env development",
